@@ -2,8 +2,12 @@ name: generate snake
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * *"   # 每天 00:00 UTC
   workflow_dispatch:
+
+# 关键：给 GITHUB_TOKEN 写权限
+permissions:
+  contents: write
 
 jobs:
   generate:
@@ -11,7 +15,7 @@ jobs:
     steps:
       - uses: Platane/snk@v3
         with:
-          github_user_name: yifengcao3
+          github_user_name: yifengcao3   # ← 你的用户名
           outputs: |
             dist/snake.svg
             dist/snake-dark.svg?palette=github-dark
